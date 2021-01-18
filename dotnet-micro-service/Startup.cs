@@ -15,7 +15,7 @@ namespace CatalogueApp
 { 
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "http://127.0.0.1:4200";
+        readonly string MyAllowSpecificOrigins = "http://127.0.0.1:4200,http://localhost:4200";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,7 +31,7 @@ namespace CatalogueApp
                     options.AddPolicy(name: MyAllowSpecificOrigins,
                                     builder =>
                                     {
-                                        builder.WithOrigins("http://127.0.0.1:4200");
+                                        builder.WithOrigins("http://127.0.0.1:4200","http://localhost:4200");
                                     });
                 });
             services.AddControllersWithViews();
