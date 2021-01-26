@@ -29,15 +29,15 @@ namespace CatalogueApp.Controllers
             CatalogueRepository.Clients.Add(client);
             CatalogueRepository.SaveChanges();
 
-            string serializedOrder = JsonSerializer.Serialize(client);
+            string serializedClient = JsonSerializer.Serialize(client);
 
             Console.WriteLine("========");
-            Console.WriteLine("Info: OrderController => Post => Recieved a new purchase order:");
-            Console.WriteLine(serializedOrder);
+            Console.WriteLine("Info: ClientController => Post => send a new client to kafka:");
+            Console.WriteLine(serializedClient);
             Console.WriteLine("=========");
 
             var producer = new ProducerWrapper("clients");
-            await producer.writeMessage(serializedOrder);
+            await producer.writeMessage(serializedClient);
 
             return client;
         }
